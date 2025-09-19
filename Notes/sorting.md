@@ -24,6 +24,7 @@ General Information
 - Quick Sort
     - In place
     - Partitions array via swaps into regions above or below a pivot value
+    - If your pivots are always bad (i.e. the lowest value), it begins to look like a selection sort problem and the complexity jumps to O(N^2)
 
 ### Adaptiveness and Stability
 __Adaptiveness:__ takes advantage of a partially sorted array (does less work than a full O(N^2) algorthm)
