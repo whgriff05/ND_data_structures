@@ -25,14 +25,19 @@ General Information
     - In place
     - Partitions array via swaps into regions above or below a pivot value
     - If your pivots are always bad (i.e. the lowest value), it begins to look like a selection sort problem and the complexity jumps to O(N^2)
+    - Space complexity is O(log N) __due to recursive nature -> hidden cost__
 
 ### Adaptiveness and Stability
 __Adaptiveness:__ takes advantage of a partially sorted array (does less work than a full O(N^2) algorthm)
 - Bubble Sort isn't adaptive unless you keep track of where in the array you make swaps
 - Insertion Sort is already adaptive
 - Selection Sort is not adaptive
+- Merge Sort is not adaptive
+- Quick Sort is not adaptive
 
 __Stability:__ if two elements have same value, order will not be changed
 - Bubble Sort is stable
 - Insertion Sort is stable
 - Selection Sort is unstable [2a, 2b, 1] would swap 2a and 2b
+- Merge Sort is stable
+- Quick Sort is unstable
