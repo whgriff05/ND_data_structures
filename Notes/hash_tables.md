@@ -52,6 +52,25 @@ typedef struct {
 } Table;
 ```
 
+## Linear Probing
+
+An alternative to __chaining__ that does not use linked lists in the hash table, instead uses a dynamic array
+
+Each bucket is just a number, but if a collision occurs, the value to be inserted is just inserted at the next possible index
+
+## Hash Functions
+
+- Use some multiplication by a large/randomish number, take N number of middle bits
+- Shift x to the left (multiples by 2 in binary)
+- Hash a string with this recursive formula for each char: `hash = 33 * hash + char` (same as `(hash << 5 + 1) + char`)
+
+## Numbers of Buckets
+
+The number of buckets in a hash table can also lessen the number of collisions
+
+zyBooks says always use a prime number of buckets\
+Convention: use a power of 2 because it is easy to work with
+
 
 
 
