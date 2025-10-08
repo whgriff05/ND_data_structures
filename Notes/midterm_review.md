@@ -126,5 +126,56 @@ __Binary Search:__ continuously divides a list into subsections and searches for
 - If the key is the midpoint, return the key/true/index
 
 ## Sorting Algorithms
-__Bubble Sort:__ Compares pairs down the list, swapping to put the greater element last, "bubbling" them forward to the end of the list
-- O(N^2)
+__Bubble Sort:__ O(N^2)
+- Compares pairs down the list
+- Swaps to put the greater one on the right
+- "Bubbles" up the greatest value to the sorted section of the list on the right end (high end)
+- Not Adaptive (unless you track the position of the sorted section)
+- Stable
+
+__Insertion Sort:__ O(N^2)
+- Compares each item to the unsorted portion of the array, inserting it in its proper place
+- Builds up a left end (low end) sorted portion
+- Adaptive
+- Stable
+
+__Selection Sort:__ O(N^2)
+- Finds lowest value and swaps it with the lowest index of the unsorted portion
+- Builds up a left end (low end) sorted portion
+- Not Adaptive
+- Not Stable
+
+__Merge Sort:__ O(N log N)
+- Recursively divides into sublists
+- Sublists are merged in sorted order
+- Each merge is O(N)
+- Not Adaptive
+- Stable
+
+__Quick Sort:__ O(N log N)
+- Sorts array in place
+- Chooses a pivot value (zyBooks uses the middle value of the array)
+- Looks at each value on either side of the pivot
+    - For items on the left of the pivot
+        - If the item is less than the pivot, it stays
+        - If the item is greater than the pivot, it swaps with an element right of the pivot that is less than the pivot
+    - For items on the right of the pivot
+        - If the item is greater than the pivot, it stays
+        - If the item is less than the pivot, it swaps with an element left of the pivot that is greater than the pivot
+- Recursively chooses pivots on each side of the original pivot, repeating the algorithm until the full array is sorted
+- *Note:* if your pivots are always bad (i.e. the lowest value in the array), the array functions similar to a selection sort and the complexity operates at O(N^2)
+
+### Definitions
+__Adaptiveness:__ a sorting algorithm takes advantage of a partially sorted array to do less work (lower time complexity than base)
+- Bubble Sort -- (usually) not adaptive
+- Insertion Sort -- adaptive
+- Selection Sort -- not adaptive
+- Merge Sort -- not adaptive
+- Quick Sort -- not adaptive
+
+__Stability:__ a sorting algorithm that does not swap elements of the same value
+- Bubble sort -- stable
+- Insertion Sort -- stable
+- Selection Sort -- not stable
+- Merge Sort -- stable
+- Quick Sort -- not stable
