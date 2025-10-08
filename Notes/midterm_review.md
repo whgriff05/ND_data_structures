@@ -164,6 +164,8 @@ __Quick Sort:__ O(N log N)
         - If the item is less than the pivot, it swaps with an element left of the pivot that is greater than the pivot
 - Recursively chooses pivots on each side of the original pivot, repeating the algorithm until the full array is sorted
 - *Note:* if your pivots are always bad (i.e. the lowest value in the array), the array functions similar to a selection sort and the complexity operates at O(N^2)
+- Not Adaptive
+- Not Stable
 
 ### Definitions
 __Adaptiveness:__ a sorting algorithm takes advantage of a partially sorted array to do less work (lower time complexity than base)
