@@ -74,7 +74,7 @@ The rules for a binary search tree:
 ```
 
 ### BST Search (recursive)
-`def search(node, key)`
+`def search(node: Node, key: int) -> bool`
 
 Base cases:
 - node is null --> return `False`
