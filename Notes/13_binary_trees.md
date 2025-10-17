@@ -19,6 +19,14 @@ Trees consist of __nodes/verticies__ and __edges__
 
 __Binary Trees__ are trees with nodes with strictly _0, 1, or 2_ children --> nodes have a left and/or right child
 
+```py
+class Node:
+    def __init__(self, val: int, left: Node, right: Node):
+        self.val = val
+        self.left = left
+        self.right = right
+```
+
 What are trees used for? __anything with hierarchical structure__
 - family trees
 - filesystem
@@ -77,7 +85,7 @@ The rules for a binary search tree:
 `def search(node: Node, key: int) -> bool`
 
 Base cases:
-- node is null --> return `False`
+- node is `None` --> return `False`
 - node is the key --> return `True`
 
 Recursive cases:
@@ -85,3 +93,12 @@ Recursive cases:
 - key is greater than the node --> return `search(node.right, key)`
 
 ### BST Insert (recursive)
+`def insert(root: Node, key: int) -> Node`
+
+Base cases:
+- root is `None` --> return `Node(key, None, None)`
+- root's value is the key --> return `root`
+
+Recursive Cases:
+- key is less than root --> `root.left = insert(root.left, key)`
+- key is greater than root --> `root.right = insert(root.right, key)`
