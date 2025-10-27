@@ -102,3 +102,46 @@ Base cases:
 Recursive Cases:
 - key is less than root --> `root.left = insert(root.left, key)`
 - key is greater than root --> `root.right = insert(root.right, key)`
+
+### BST Inorder Traversal (recursive)
+`def inorder(root: Node)`
+
+An inorder traversal prints all left children, the root node, and then all right children
+
+```
+/* Values 10-100 by tens */
+                                  50
+                               /     \
+                            /         \
+                         20             80
+                       /    \         /    \
+                     /        \     /        \
+                    10        30    60        90
+                               \       \         \
+                                40      70        100
+
+/* prints 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 */
+```
+
+Base case:
+- root is `None` --> return
+
+Recursive cases:
+- `inorder(root.left)` --> traverse all left children
+- `print(root)` --> print the root node
+- `inorder(root.right)` --> traverse all right children
+
+### BST Height (recursive)
+`def height(root: Node) -> int`
+
+The __height__ of a BST is the number of edges traversed from root to furthest leaf
+- 1 node tree has height = 0
+- 1 node with 2 children has height = 1
+- __empty tree has height = -1__
+
+Base case:
+- root is `None` --> return `-1`
+
+Recursive cases:
+- get the maximum value of the heights of the left children and right children --> `height_max = max(height(root.left), height(root.right))`
+- return the maximum value + 1 (to account for the current node's height) --> return `height_max + 1`
