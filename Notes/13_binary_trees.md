@@ -145,3 +145,21 @@ Base case:
 Recursive cases:
 - get the maximum value of the heights of the left children and right children --> `height_max = max(height(root.left), height(root.right))`
 - return the maximum value + 1 (to account for the current node's height) --> return `height_max + 1`
+
+### Removing a BST Node
+`root = remove(root, key)`
+
+Base case:
+- root is `None` --> return `None`
+
+Recursive cases:
+- root is NOT key
+  - key < root.key --> `root.left = remove(root.left, key)`
+  - key > root.key --> `root.right = remove(root.right, key)`
+- root is key
+  - root has no children --> return `None`
+  - root has 1 child --> return `root.(left/right)`
+  - root has 2 children --> move the right child to the root
+    - convention: favor the right child
+  - root has 2 children AND the height > 1 --> move the next smallest node after the key to the root, remove that new key from the right subtree
+
