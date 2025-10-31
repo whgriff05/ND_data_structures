@@ -40,6 +40,12 @@ Binary trees have characteristics
 - `full`: every node has either 0 or 2 children
 - `complete`: filled level by level, left to right
 
+Types of Traversals
+- Preorder Traversal: `operation(curr)`, `visit(curr.left)`, `visit(curr.right)`
+- Inorder Traversal: `visit(curr.left)`, `operation(curr)`, `visit(curr.right)`
+- Postorder Traversal: `visit(curr.left)`, `visit(curr.right)`, `operation(curr)`
+- Level Order Traversal: Visit the tree nodes level by level left to right
+
 ## Binary Search Trees
 Assume no duplicates\
 Used for looking things up\
@@ -163,3 +169,75 @@ Recursive cases:
     - convention: favor the right child
   - root has 2 children AND the height > 1 --> move the next smallest node after the key to the root, remove that new key from the right subtree
 
+
+## Depth-First (DFS) and Breadth-First (BFS) Search of Binary Trees
+
+```
+/* Values 10-100 by tens */
+                                  50
+                               /     \
+                            /         \
+                         20             80
+                       /    \         /    \
+                     /        \     /        \
+                    10        30    60        90
+                               \       \         \
+                                40      70        100
+
+```
+
+__Depth-First:__ Continuing as far down in a node's children before moving onto the next child (called a _"preorder traversal"_)
+- Order: 50, 20, 10, 30, 40, 80, 60, 70, 90, 100
+
+__Breadth-First:__ Search by level (called a _"level order traversal"_)
+- Order: 50, 20, 80, 10, 30, 60, 90, 40, 70, 100
+
+### Depth-First Search (DFS)
+
+Recursively:
+```py
+def dfs(root):
+  operation(root) # Perform operation/etc...
+  dfs(root.left)
+  dfs(root.right)
+```
+
+Iteratively:
+- we need a "frontier" (usually a stack) to keep track of what nodes to visit
+```py
+def dfs(root):
+  frontier = Stack()
+  visited = []
+
+  frontier.push(root)
+
+  while frontier:
+    curr = frontier.pop()
+
+    operation(curr) # Perform operation/etc...
+    visited.append(curr)
+
+    frontier.push(curr.right)
+    frontier.push(curr.left)
+```
+
+### Breadth-First Search (BFS)
+
+Iteratively:
+```py
+def bfs(root):
+  # Use a queue for correct visiting order
+  frontier = Queue() 
+  visited = []
+
+  frontier.queue(root)
+
+  while frontier:
+    curr = frontier.dequeue()
+
+    operation(curr)
+    visited.append(curr)
+
+    frontier.queue(curr.left)
+    frontier.queue(curr.right)
+```
