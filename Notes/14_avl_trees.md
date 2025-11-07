@@ -143,7 +143,15 @@ T1   T2                 T2   T3
 - return the new root
 
 `_balance(self, node)`
-- left heavy: `_balance_factor(node) > 0`
+- left heavy: `_balance_factor(node) > 1`
     - left-left: `_balance_factor(node.left) > 0`
+        - right rotate the node
     - left-right: `_balance_factor(node.left) < 0`
-
+        - left rotate the left child
+        - right rotate the node
+- right heavy: `_balance_factor(node) < -1`
+    - right-right `_balance_factor(node.right) < 0`
+        - left rotate the node
+    - right-left `_balance_factor(node.right) > 0`
+        - right rotate the right child
+        - left rotate the node
