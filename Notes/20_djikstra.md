@@ -35,3 +35,13 @@ while frontier not empty:
             push (distance, neighbor vertex) to frontier
 ```
 
+## Time Complexity
+
+Edges dominate: for `V` nodes, max `V^2` edges
+
+`E` edges * push/pop min-heap = `O(E log E)`
+
+Zybooks says that the time complexity is `O(E log V)`
+
+Same thing because we are taking the logarithm of a value squared, and time complexity order ignores the multiplier
+
