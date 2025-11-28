@@ -1,1 +1,4 @@
 .DS_Store
+.vscode
+final_mini_project/__pycache__
+final_mini_project/tests/__pycache__
