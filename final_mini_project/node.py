@@ -12,7 +12,7 @@ class Node:
         
         return self.children[key]
     
-    def add_child(self, k):
-        self.children[k] = Node(k)
-        
+    def add_child(self, key):
+        self.children[key] = Node(key)
+
 
