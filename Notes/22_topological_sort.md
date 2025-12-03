@@ -44,3 +44,23 @@ While frontier is not empty
 - for each neighbor of vertex
     - decrement degree
     - if degree is 0, append to frontier
+
+## Detecting Cycles
+
+```
+/* Ex: Basic Cycle */
+
+A ---> B ---> C
+       ^      |
+       |-------
+```
+
+For this example, after passing A, the algorithm will stop because B's starting degree will be `2` and after decrementing, it will be `1`. Since no vertices have degree `0`, the algorithm stops
+
+To detect a cycle, see if the length of the visited list is less than the number of vertices
+
+## Complexity of Kahn's Algorithm
+
+`O(V + E)`
+
+Mostly linear dependent on # verticies/edges
