@@ -32,20 +32,20 @@ class TrieTest(unittest.TestCase):
         self.assertEqual("bus" in t1, True)
         self.assertEqual("busy" in t1, False)
 
-    def test_trie_add_word(self):
+    def test_trie_append(self):
         t1 = Trie()
         
         self.assertEqual("bus" in t1, False)
         self.assertEqual("rhombus" in t1, False)
         self.assertEqual("busy" in t1, False)
 
-        self.assertEqual(t1.add_word("bus"), True)
+        self.assertEqual(t1.append("bus"), True)
         self.assertEqual("bus" in t1, True)
-        self.assertEqual(t1.add_word("bus"), False)
+        self.assertEqual(t1.append("bus"), False)
 
-        self.assertEqual(t1.add_word("rhombus"), True)
+        self.assertEqual(t1.append("rhombus"), True)
         self.assertEqual("rhombus" in t1, True)
 
-        self.assertEqual(t1.add_word("busy"), True)
+        self.assertEqual(t1.append("busy"), True)
         self.assertEqual("busy" in t1, True)
 

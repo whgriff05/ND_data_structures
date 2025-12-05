@@ -16,7 +16,7 @@ class Trie:
 
         return True
 
-    def add_word(self, word):
+    def append(self, word):
         if word not in self:
             current_node = self.head
             for letter in word:
