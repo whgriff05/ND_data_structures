@@ -2,17 +2,24 @@ import unittest
 from dictionary import Dictionary
 
 class DictionaryTest(unittest.TestCase):
+    Total = 3
+    Points = 0
+
     @classmethod
     def setUpClass(cls):
         pass
 
     @classmethod
     def tearDownClass(cls):
-        pass
+        print()
+        print(f"\tScore: {cls.Points}/{cls.Total}")
+        print(f"\tStatus: {"Success" if cls.Points >= cls.Total else "Failure"}")
 
     def test_dictionary_init(self):
         d1 = Dictionary()
         self.assertEqual(d1.contents, {})
+
+        DictionaryTest.Points += 1
 
     def test_dictionary_contains(self):
         d1 = Dictionary()
@@ -23,6 +30,8 @@ class DictionaryTest(unittest.TestCase):
 
         self.assertEqual("bus" in d1, True)
         self.assertEqual("busy" in d1, False)
+
+        DictionaryTest.Points += 1
         
     def test_dictionary_append(self):
         d1 = Dictionary()
@@ -40,3 +49,5 @@ class DictionaryTest(unittest.TestCase):
 
         self.assertEqual(d1.append("busy"), True)
         self.assertEqual("busy" in d1, True)
+
+        DictionaryTest.Points += 1

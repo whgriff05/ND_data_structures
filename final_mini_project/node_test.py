@@ -2,13 +2,18 @@ import unittest
 from node import Node
 
 class NodeTest(unittest.TestCase):
+    Total = 4
+    Points = 0
+
     @classmethod
     def setUpClass(cls):
         pass
 
     @classmethod
     def tearDownClass(cls):
-        pass
+        print()
+        print(f"\tScore: {cls.Points}/{cls.Total}")
+        print(f"\tStatus: {"Success" if cls.Points >= cls.Total else "Failure"}")
 
     def test_node_init(self):
         n1 = Node()
@@ -25,6 +30,8 @@ class NodeTest(unittest.TestCase):
         self.assertNotEqual(n3.children, {})
         self.assertEqual(n3.children["a"].key, "a")
 
+        NodeTest.Points += 1
+
     def test_node_has_children(self):
         n1 = Node()
         self.assertEqual(n1.key, None)
@@ -38,6 +45,8 @@ class NodeTest(unittest.TestCase):
         self.assertEqual(n2.children["a"].key, "a")
         self.assertEqual(n2.has_children(), True)
 
+        NodeTest.Points += 1
+
     def test_node_get_child(self):
         n1 = Node()
         self.assertEqual(n1.get_child("a"), None)
@@ -48,6 +57,8 @@ class NodeTest(unittest.TestCase):
         self.assertEqual(n1.get_child("a"), n2)
         self.assertEqual(n1.has_children(), True)
 
+        NodeTest.Points += 1
+
     def test_node_add_child(self):
         n1 = Node("a")
         self.assertEqual(n1.has_children(), False)
@@ -55,4 +66,6 @@ class NodeTest(unittest.TestCase):
         n1.add_child("b")
         self.assertEqual(n1.get_child("b").key, "b")
         self.assertEqual(n1.has_children(), True)
+
+        NodeTest.Points += 1
 

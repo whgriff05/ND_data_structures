@@ -3,18 +3,25 @@ from trie import Trie
 from node import Node
 
 class TrieTest(unittest.TestCase):
+    Total = 3
+    Points = 0
+        
     @classmethod
     def setUpClass(cls):
         pass
 
     @classmethod
     def tearDownClass(cls):
-        pass
+        print()
+        print(f"\tScore: {cls.Points}/{cls.Total}")
+        print(f"\tStatus: {"Success" if cls.Points >= cls.Total else "Failure"}")
 
     def test_trie_init(self):
         t1 = Trie()
         self.assertEqual(type(t1.head), type(Node()))
         self.assertEqual(t1.head.key, "*")
+
+        TrieTest.Points += 1
 
     def test_trie_contains(self):
         t1 = Trie()
@@ -31,6 +38,8 @@ class TrieTest(unittest.TestCase):
 
         self.assertEqual("bus" in t1, True)
         self.assertEqual("busy" in t1, False)
+
+        TrieTest.Points += 1
 
     def test_trie_append(self):
         t1 = Trie()
@@ -49,3 +58,4 @@ class TrieTest(unittest.TestCase):
         self.assertEqual(t1.append("busy"), True)
         self.assertEqual("busy" in t1, True)
 
+        TrieTest.Points += 1
