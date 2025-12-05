@@ -1,0 +1,3 @@
+test-node: node.py
+	@echo Testing node...
+	@python3 
