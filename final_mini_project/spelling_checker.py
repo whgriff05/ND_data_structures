@@ -25,17 +25,17 @@ def initialize_dictionary(dict_file, structure):
     return dictionary
 
 def get_misspells(dictionary, text_file):
-    misspells = []
+    misspells = set()
     with open(text_file, "r") as tf:
         for line in tf:
             line = line.strip()
             words = re.split(r'[\W_]+', line)
             for word in words:
-                if word == "":
+                if word == "" or word.isnumeric() or not word.isalpha():
                     continue
                 word = word.lower()
                 if word not in dictionary:
-                    misspells.append(word)
+                    misspells.add(word)
     return misspells
 
 
