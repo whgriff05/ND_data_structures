@@ -3,7 +3,7 @@ import sys
 import time
 from trie import Trie
 
-def initialize_dictionary(dict_file):
+def initialize_dictionary_trie(dict_file):
     dict_trie = Trie()
     with open(dict_file, "r") as df:
         for line in df:
@@ -17,7 +17,7 @@ def initialize_dictionary(dict_file):
 
     return dict_trie
 
-def get_misspells(dict_trie, text_file):
+def get_misspells_trie(dict_trie, text_file):
     misspells = []
     with open(text_file, "r") as tf:
         for line in tf:
@@ -34,7 +34,7 @@ def get_misspells(dict_trie, text_file):
 def main(args=sys.argv):
     aarray = []
     for arg in args:
-        if arg == "./spelling_checker.py":
+        if arg == "./spelling_checker.py" or arg == "spelling_checker.py":
             continue
         aarray.append(arg)
 
@@ -44,12 +44,12 @@ def main(args=sys.argv):
         sys.exit(1)
 
     tstart = time.time()
-    dict_trie = initialize_dictionary(aarray[0])
+    dict_trie = initialize_dictionary_trie(aarray[0])
     t_initialize = round(time.time() - tstart, 5)
     print(f"Time to initialize dict_tree: {t_initialize}")
 
     tstart = time.time()
-    misspells = get_misspells(dict_trie, aarray[1])
+    misspells = get_misspells_trie(dict_trie, aarray[1])
     t_misspells = round(time.time() - tstart, 5)
     print(f"Time to search for misspells: {t_misspells}")
 
