@@ -1,3 +1,6 @@
+demo:
+	python3 spelling_checker.py -a words_alpha.txt essay2.txt
+
 test:
 	@$(MAKE) -sk test-all
 
