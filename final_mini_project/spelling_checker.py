@@ -1,3 +1,4 @@
+import os
 import re
 import sys
 import time
@@ -100,12 +101,23 @@ def main(args=sys.argv):
         categories_misspells = ["Misspells Trie", "Misspells Dict", "Misspells List"]
         values_misspells = [tmt, tmd, tml]
 
+        file_name = aarray[2].split(".")[0]
+
+        if not os.path.isdir("figures"):
+            os.mkdir("figures")
+
         figi, axi = plt.subplots()
         barsi = axi.bar(categories_initialize, values_initialize)
         axi.bar_label(barsi, padding=1)
         axi.set_ylabel("Time (s)")
         axi.set_xlabel("Functions")
         axi.set_title("Initialization/Reading Time")
+
+        plt.savefig(f"figures/initialization_time_{file_name}.png")
+        if os.path.exists(f"figures/initialization_time_{file_name}.png"):
+            print(f"Successfully created figures/initialization_time_{file_name}.png")
+        else:
+            print("Failed to create Initialization Time graph")
 
         figm, axm = plt.subplots()
         barsm = axm.bar(categories_misspells, values_misspells)
@@ -114,6 +126,11 @@ def main(args=sys.argv):
         axm.set_xlabel("Functions")
         axm.set_title("Misspell Finding Time")
 
+        plt.savefig(f"figures/misspell_time_{file_name}.png")
+        if os.path.exists(f"figures/misspell_time_{file_name}.png"):
+            print(f"Successfully created figures/misspell_time_{file_name}.png")
+        else:
+            print("Failed to create Misspell Time graph")
     
         plt.show()
 
