@@ -112,11 +112,9 @@ def main(args=sys.argv):
         axm.bar_label(barsm, padding=1)
         axm.set_ylabel("Time (s)")
         axm.set_xlabel("Functions")
-        axm.set_title("Initialization/Reading Time")
+        axm.set_title("Misspell Finding Time")
 
-        # Recursively get memory using __sizeof__ magic method
-        print(f"Memory: Trie: {sys.getsizeof(dict_trie)} | Dict: {sys.getsizeof(dict_dict)} | List: {sys.getsizeof(dict_list)}")
-
+    
         plt.show()
 
 
