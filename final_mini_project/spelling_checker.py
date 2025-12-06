@@ -1,6 +1,7 @@
 import re
 import sys
 import time
+import matplotlib.pyplot as plt
 from trie import Trie
 from dictionary import Dictionary
 
@@ -48,26 +49,78 @@ def main(args=sys.argv):
 
     if len(aarray) != 3:
         print("Error: too many arguments")
-        print("Usage: \t ./spelling_checker.py -[t/d/a] <dictionary file> <text file>")
+        print("Usage: \t ./spelling_checker.py -[t/d/l/a] <dictionary file> <text file>")
         sys.exit(1)
 
-    if aarray[0] not in ['-t', '-d', '-l']:
+    if aarray[0] not in ['-t', '-d', '-l', '-a']:
         print(aarray[0])
         print("Error: data structure does not exist")
-        print("Usage: \t ./spelling_checker.py -[t/d/a] <dictionary file> <text file>")
+        print("Usage: \t ./spelling_checker.py -[t/d/l/a] <dictionary file> <text file>")
         sys.exit(1)
 
-    tstart = time.time()
-    dictionary = initialize_dictionary(aarray[1], aarray[0])
-    t_initialize = round(time.time() - tstart, 5)
-    print(f"Time to initialize word dictionary: {t_initialize}")
+    if aarray[0] != "-a":
+        tstart = time.time()
+        dictionary = initialize_dictionary(aarray[1], aarray[0])
+        t_initialize = round(time.time() - tstart, 5)
+        print(f"Time to initialize word dictionary: {t_initialize}")
 
-    tstart = time.time()
-    misspells = get_misspells(dictionary, aarray[2])
-    t_misspells = round(time.time() - tstart, 5)
-    print(f"Time to search for misspells: {t_misspells}")
+        tstart = time.time()
+        misspells = get_misspells(dictionary, aarray[2])
+        t_misspells = round(time.time() - tstart, 5)
+        print(f"Time to search for misspells: {t_misspells}")
 
-    print(misspells)
+        print(misspells)
+    else:
+        tst = time.time()
+        dict_trie = initialize_dictionary(aarray[1], "-t")
+        tit = time.time() - tst
+
+        tsd = time.time()
+        dict_dict = initialize_dictionary(aarray[1], "-d")
+        tid = time.time() - tsd
+
+        tsl = time.time()
+        dict_list = initialize_dictionary(aarray[1], "-l")
+        til = time.time() - tsl
+
+        tst = time.time()
+        mis_trie = get_misspells(dict_trie, aarray[2])
+        tmt = time.time() - tst
+
+        tsd = time.time()
+        mis_dict = get_misspells(dict_dict, aarray[2])
+        tmd = time.time() - tsd
+
+        tsl = time.time()
+        mis_list = get_misspells(dict_list, aarray[2])
+        tml = time.time() - tsl
+
+        categories_initialize = ["Initialize Trie", "Initalize Dict", "Initialize List"]
+        values_initialize = [tit, tid, til]
+        categories_misspells = ["Misspells Trie", "Misspells Dict", "Misspells List"]
+        values_misspells = [tmt, tmd, tml]
+
+        figi, axi = plt.subplots()
+        barsi = axi.bar(categories_initialize, values_initialize)
+        axi.bar_label(barsi, padding=1)
+        axi.set_ylabel("Time (s)")
+        axi.set_xlabel("Functions")
+        axi.set_title("Initialization/Reading Time")
+
+        figm, axm = plt.subplots()
+        barsm = axm.bar(categories_misspells, values_misspells)
+        axm.bar_label(barsm, padding=1)
+        axm.set_ylabel("Time (s)")
+        axm.set_xlabel("Functions")
+        axm.set_title("Initialization/Reading Time")
+
+        # Recursively get memory using __sizeof__ magic method
+        print(f"Memory: Trie: {sys.getsizeof(dict_trie)} | Dict: {sys.getsizeof(dict_dict)} | List: {sys.getsizeof(dict_list)}")
+
+        plt.show()
+
+
+
 
 
 if __name__ == "__main__":
