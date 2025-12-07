@@ -25,8 +25,40 @@ def build_graph(points: Points) -> Graph:
     pass
 
 def construct_mst(graph) -> tuple[float, Edges]:
-    # TODO:
-    pass
+    """
+    Constructs a Minimum Spanning Tree (MST) for a given graph using
+    Prim's algorithm.
+
+    Args:
+        graph: The graph for which to construct the MST.
+
+    Returns:
+        A tuple containing the total weight of the MST and a dictionary
+        representing the edges of the MST, where the key is the
+        destination and the value is the source.
+    """
+    if not graph:
+        return 0.0, {}
+
+    start_node = next(iter(graph))
+    frontier = [(0.0, start_node, start_node)]  # (weight, node, source)
+    visited = {}
+    total_weight = 0.0
+
+    while frontier and len(visited) < len(graph):
+        weight, node, source = heappop(frontier)
+        if node in visited:
+            continue
+        visited[node] = source
+        total_weight += weight
+        for neighbor, edge_weight in graph.get(node, {}).items():
+            if neighbor not in visited:
+                heappush(frontier, (edge_weight, neighbor, node))
+
+    if start_node in visited:
+        del visited[start_node]
+
+    return total_weight, visited
 
 # Main Execution
 

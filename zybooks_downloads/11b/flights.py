@@ -24,15 +24,56 @@ def read_graph(stream) -> Graph:
 
 
 def find_cheapest_flight_plan(origin: int, destination: int, graph: Graph) -> tuple[int, Plan]:
-    pass
+    """
+    Finds the cheapest flight plan from an origin to a destination using
+    Dijkstra's algorithm.
 
+    Args:
+        origin: The starting city's ID.
+        destination: The destination city's ID.
+        graph: The graph representing flight connections and costs.
 
-      
+    Returns:
+        A tuple containing the total cost of the cheapest flight and a plan
+        (a dictionary mapping each city in the path to its predecessor).
+    """
+    frontier = [(0, origin)]  # (cost, city_id)
+    costs = {origin: 0}
+    plan = {}
+
+    while frontier:
+        cost, current_city = heappop(frontier)
+
+        if current_city == destination:
+            return cost, plan
+
+        for neighbor, flight_cost in graph.get(current_city, {}).items():
+            new_cost = cost + flight_cost
+            if new_cost < costs.get(neighbor, inf):
+                costs[neighbor] = new_cost
+                plan[neighbor] = current_city
+                heappush(frontier, (new_cost, neighbor))
+
+    return inf, {}
 
 
 def generate_flight_path(origin: int, destination: int, plan: Plan) -> Iterator[int]:
-    # TODO:
-    pass
+    """
+    Recursively generates the flight path from origin to destination.
+
+    Args:
+        origin: The starting city's ID.
+        destination: The destination city's ID.
+        plan: A dictionary mapping each city in a path to its predecessor.
+
+    Yields:
+        The next city ID in the flight path.
+    """
+    if origin == destination:
+        yield origin
+    elif destination in plan:
+        yield from generate_flight_path(origin, plan[destination], plan)
+        yield destination
 
 def main(args=None) -> None:
     if args is None:
