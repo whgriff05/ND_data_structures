@@ -68,7 +68,7 @@ My solution was wrong because it incorrectly calculated using the time complexit
     - Count every character using the dict {letter: count}
 - `huffman_build_tree()`
     - Get the frequency table of the string
-    - Initialize a `MaxHeap()`
+    - Initialize a `MinHeap()`
     - For every character and count, append a node of (character, frequency) to the heap
     - While there is more than one node on the heap
         - Pop two nodes
