@@ -141,6 +141,15 @@ Writing the classes in such a way to make it so the same methods could be used t
     - Related to the idea of object-oriented programming
 - In C, ADTs are usually implemented with `structs`
 
+### Dynamic Arrays
+- Dynamic Arrays consist of three parts
+    - `data` - the internal array
+    - `capacity` - the amount of items the array can hold at max
+    - `size` - the amount of items the array currently holds
+- When you want to insert an item into a full dynamic array, the `data` needs to be resized (using `realloc()`)
+    - It is convention to double the capacity for the resized array
+    - This results in __amortization__: eventually, after enough doubling, the average operation happens at O(1) even though resizing is potentially a O(N) operation because the array needs to be resized less and less
+
 ### Stacks, Queues, and Sets
 - Stack: LIFO/FILO data structure (item is either pushed to or popped from top of stack)
 - Queue: FIFO data structure (like how a line works in real life)
@@ -176,6 +185,12 @@ Writing the classes in such a way to make it so the same methods could be used t
 - They have a __base case__, where they can reach an end to the recursive calls, and a __recursive call__ (or multiple), where the function is called again on a smaller subset of the original input
 - Offer a hidden space complexity: the __call stack__ in a recursive function will fill up with all recursive calls
 - Iterative versions often use some type of tracking variable or stack/queue to keep track of the original data while still allowing subsets
+
+### Binary Search
+- Continuously divides a list into subsections and searches for a key by comparing it to the midpoint of a subsection
+    - Only works on __sorted__ lists
+- Eliminates half of a list per iteration/recursive call
+- `O(log n)` because it cuts the list in half each time
 
 ### Sorting Algorithms
 - Bubble Sort
@@ -293,9 +308,9 @@ Writing the classes in such a way to make it so the same methods could be used t
     - __Frontier:__ priority queue/min heap `Heap((weight, current node, predecessor))`
     - __Visited:__ dict/hash table `{node: predecessor}`
 - Kahn's Topological Sort Algorithm
-    - 
-    - __Frontier:__ 
-    - __Visited:__
+    - A "priority scheduling" algorithm; sorts nodes in a directed graph by prerequisite
+    - __Frontier:__ stack (we want a data structure with O(1) for push and pop)
+    - __Visited:__  list
 
 
 
