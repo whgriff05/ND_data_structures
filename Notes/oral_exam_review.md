@@ -78,7 +78,7 @@ My solution was wrong because it incorrectly calculated using the time complexit
     - Return the final singular combined node
 - `huffman_get_codes()`
     - If the root node is None, return an empty dictionary
-    - If the chilren are None, return a dictionary of {key: prefix}
+    - If the children are None, return a dictionary of {key: prefix}
     - Return the union of the dicts returned by the recursive calls on the children of the root node with a `0` or `1` attached to the prefix respectively
 - `huffman_compress()`
     - Build the tree and get the codes
