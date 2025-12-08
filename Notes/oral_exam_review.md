@@ -230,8 +230,8 @@ Writing the classes in such a way to make it so the same methods could be used t
     - Link the current's next to the new node
 - To remove a node from the list (assuming doubly-linked)
     - Get pointer to the current node
-    - Set the current's previous's next pointer to the previous node
-    - Set the current's next's previous pointer to the next node
+    - Set the current's previous's next pointer to the next node
+    - Set the current's next's previous pointer to the previous node
     - Create a temporary value for the variable
     - Free the current node
 
