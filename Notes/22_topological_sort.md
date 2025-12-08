@@ -63,4 +63,4 @@ To detect a cycle, see if the length of the visited list is less than the number
 
 `O(V + E)`
 
-Mostly linear dependent on # verticies/edges
+Mostly linear dependent on number of vertices/edges
